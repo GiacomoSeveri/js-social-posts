@@ -1,5 +1,5 @@
 // creo un array
-const data = [
+const allPosts = [
     {
         id: '1',
         name: 'Giacomo Poretti',
@@ -137,44 +137,43 @@ const data = [
     },
     ]
 
-// prendo l'elemento in pagina
-const social = document.getElementById('fake-social')
-data.forEach(element => {
-   // prendo ogni elemento dell'aray 
-    const {id ,name, data, profilePick, text, postPick, like} = element;
+    const ciao = document.getElementById('social-page');
 
-    //stampo in pagina 
-    social.innerHTML += `
-    <div id="container" class="posts">
-        <div class="post">
-          <div>
-            <div class="post-profile">
-              <div class="post-icon">
-                <img class="p-pic" src="${profilePick}" alt="${name}" />
+    allPosts.forEach(element => {
+       // prendo ogni elemento dell'aray 
+        const {id ,name, data, profilePick, text, postPick, like} = element;
+    
+        //stampo 
+        ciao.innerHTML += `
+            <div class="post">
+              <div class="post__header">
+                <div class="post-meta">
+                  <div class="post-meta__icon">
+                    <img class="profile-pic" src="${profilePick}" alt="${name}" />
+                  </div>
+                  <div class="post-meta__data">
+                    <div class="post-meta__author">${name}</div>
+                    <div class="post-meta__time">${data}</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p>${name}</p>
-                <p class="date">${data}</p>
+              <div class="post__text">
+                ${text}
+              </div>
+              <div class="post__image">
+                <img src="${postPick}" alt="" />
+              </div>
+              <div class="post__footer">
+                <div class="likes js-likes">
+                  <div class="likes__cta">
+                    <button class="like-button js-like-button" href="#" data-postid="1">
+                      <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                      <span class="like-button__label">Mi Piace</span>
+                    </button>
+                  </div>
+                  <div class="likes__counter">Piace a <b id="like-counter-${id}" class="js-likes-counter">${like}</b> persone</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="post-text">
-            ${text}
-          </div>
-          <div class="post-image">
-            <img src="${postPick}" alt="" />
-          </div>
-          <div>
-            <div class="like">
-              <div>
-                <button class="like-btn" href="#">
-                  <p>Mi Piace</p>
-                </button>
-              </div>
-              <div class="likes-counter">Piace a <span>${like}</span> persone</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `    
-});
+          </div>`    
+    });
